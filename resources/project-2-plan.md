@@ -7,9 +7,12 @@ Review the Project 2 requirements and check out some [examples](https://romebell
 In this space below, list **THREE** ideas for your Project 2. For each idea, include [user stories](https://www.atlassian.com/agile/project-management/user-stories) for each idea and a link to the API(s) you want to use for it.
 
 --------------------------------------------------------
-1. 
-2. 
-3.
+1. Bakery E Commerce 
+- User Story: As a customer of the bakery shop, I want to be able to order customized cakes online so that I can easily get a cake tailored to my specific preferences for special occasions like birthdays and weddings.
+2. To Do check list App
+- User Story: As a user of the to-do app, I want to be able to save my to-do list items in a database so that I can access and manage my tasks from any device and never lose my tasks.
+3. Quiz Maker
+- User Story: As a quiz maker, I want to be able to create and manage quizzes so that I can provide engaging and educational content to my audience.
 ---------------------------------------------------------
 
 Make a PR when you're done!
