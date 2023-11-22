@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       // each user can have many tasks
-      user.hasMany(models.task);
+      User.belongsToMany(models.Task, { through: 'UserTask' });
     }
   }
   user.init({
