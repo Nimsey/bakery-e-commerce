@@ -1,11 +1,11 @@
 {
   "development": {
-    "database": "bakeryshop",
+    "database": "team_tasks",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
-    "database": "bakeryshop",
+    "database": "team_tasks",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
