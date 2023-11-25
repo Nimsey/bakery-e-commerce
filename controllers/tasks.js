@@ -7,11 +7,25 @@ const db = require('../models');
 // POST route to create a new task
 router.post('/tasks', async (req, res) => {
     try {
-        const { title } = req.body; // Replace with actual field names from your form
+        const { title, priority, email } = req.body;
+        console.log(req.body);
+        // Find user by email
+        const user = await db.user.findOne({ where: { email: email } });
+        
+        if (!user) {
+            // Handle case where user is not found
+            res.status(404).send("User not found");
+        }
+
+        // Create new task
         const newTask = await db.Task.create({
-            title
-            // Include other task fields as needed
+            title,
+            priority
         });
+
+        // Associate task with user
+        await user.addTask(newTask);
+
         res.redirect('/'); // Redirect to the home page or tasks list page
     } catch (error) {
         console.error('Error creating task:', error);

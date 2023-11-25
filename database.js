@@ -20,14 +20,25 @@ const db = require('./models');
 
 // READ
 // find one user
-async function findOneUser() {
+// async function findOneUser() {
+//     try {
+//         const user = await db.user.findOne({
+//             where: { id: 10 }
+//         });
+//         console.log('current user here >>>', user);  
+//     } catch (error) {
+//         console.log('did not find user b/c of >>>', error);
+//     }
+// }
+
+async function findOneEmail() {
     try {
-        const user = await db.user.findOne({
-            where: { id: 10 }
+        const email = await db.user.findOne({
+            where: { email: "susan@email.com" }
         });
-        console.log('current user here >>>', user);  
+        console.log('current email here >>>', email);  
     } catch (error) {
-        console.log('did not find user b/c of >>>', error);
+        console.log('did not find email b/c of >>>', error);
     }
 }
 // @todo run findOneUser function below
@@ -91,7 +102,7 @@ async function findOneUser() {
 
 async function main() {
     // await createUser();
-    await findOneUser();
+    await findOneEmail();
     // await findAllUsers();
     // ... other function calls
 }

@@ -4,8 +4,15 @@
     </h2>
     <form action="/tasks" method="POST" onsubmit="return checkEmpty()">
         <input type="text" id="myInput" name="title" placeholder="Create task...">
+        <select name="priority">
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+        </select>
+        <input type="email" name="email" placeholder="Assign to (email)...">
         <button type="submit" class="addBtn">Add</button>
     </form>
+    
 </div>
 
 <ul id="myUL">
