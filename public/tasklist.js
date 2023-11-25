@@ -23,8 +23,10 @@ document.addEventListener('DOMContentLoaded', function () {
             case 'Low':
                 badge.classList.add('badge', 'bg-success');
                 break;
-            default:
-                badge.classList.add('badge', 'bg-secondary');
+            case 'Future Me':
+                badge.classList.add('badge', 'bg-info');
+            case 'Default':
+                badge.classList.add('badge', 'bg-primary');
         }
     });
 });
@@ -39,12 +41,20 @@ for (i = 0; i < close.length; i++) {
 }
 
 // Add a "checked" symbol when clicking on a list item
-var list = document.querySelector('ul');
-list.addEventListener('click', function (ev) {
-    if (ev.target.tagName === 'LI') {
-        ev.target.classList.toggle('checked');
+document.addEventListener('DOMContentLoaded', function () {
+    var list = document.querySelector('#myUL');
+    if (list) {
+        list.addEventListener('click', function (ev) {
+            if (ev.target.tagName === 'LI') {
+                ev.target.classList.toggle('checked');
+            } else if (ev.target.closest('li')) { 
+                // This will ensure that clicking on child elements of the li also triggers the event
+                ev.target.closest('li').classList.toggle('checked');
+            }
+        }, false);
     }
-}, false);
+});
+
 
 // if field is empty throw an error
 function checkEmpty() {
