@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Task.belongsToMany(models.user, { through: 'UserTask' });
+      Task.belongsToMany(models.user, { through: 'user_tasks' });
     }
   }
   Task.init({
@@ -23,11 +23,13 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     description: DataTypes.TEXT,
-    status: DataTypes.STRING,
+    priority: DataTypes.STRING,
     deadline: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Task',
+    tableName: 'tasks',
+    freezeTableName: true
   });
   return Task;
 };

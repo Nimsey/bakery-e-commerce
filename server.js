@@ -6,6 +6,10 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('./config/ppConfig');
 const isLoggedIn = require('./middleware/isLoggedIn');
+const db = require('./models');
+const taskRouter = require('./controllers/tasks'); // Adjust path as needed
+const methodOverride = require('method-override');
+
 
 // environment variables
 SECRET_SESSION = process.env.SECRET_SESSION;
@@ -13,9 +17,11 @@ SECRET_SESSION = process.env.SECRET_SESSION;
 app.set('view engine', 'ejs');
 
 app.use(require('morgan')('dev'));
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 app.use(layouts);
+app.use(methodOverride("_method"));
+
 
 app.use(flash());            // flash middleware
 
@@ -36,11 +42,20 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/', (req, res) => {
-  res.render('index');
-})
-
 app.use('/auth', require('./controllers/auth'));
+app.use(taskRouter);
+
+app.get('/', async (req, res) => {
+  try {
+    const tasks = await db.Task.findAll();
+    let name = req.user ? req.user.name : 'Guest';
+    res.render('index', { tasks, name });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).send('Server error');
+  }
+});
+
 
 // Add this below /auth controllers
 app.get('/profile', isLoggedIn, (req, res) => {
