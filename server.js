@@ -42,12 +42,26 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use((req, res, next) => {
+  res.locals.user = req.user || null; // Assign req.user to res.locals.user, or null if not available
+  next(); // Continue to the next middleware/route handler
+});
+
+
 app.use('/auth', require('./controllers/auth'));
 app.use(taskRouter);
 
 app.get('/', async (req, res) => {
   try {
-    const tasks = await db.Task.findAll();
+    const tasks = await db.Task.findAll({
+        include: [{
+            model: db.user, // Use 'user' if that's how your model is named
+            as: 'users',    // Adjust the 'as' alias based on your association definition
+            attributes: ['name'], // Fetch only the 'name' attribute of the user
+            through: { attributes: [] } // Avoid fetching extra attributes from the join table
+        }]
+    });
+
     let name = req.user ? req.user.name : 'Guest';
     res.render('index', { tasks, name });
   } catch (error) {

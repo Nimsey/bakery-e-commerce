@@ -8,7 +8,26 @@
 //     span.appendChild(txt);
 //     myNodelist[i].appendChild(span);
 // }
+document.addEventListener('DOMContentLoaded', function () {
+    const badges = document.querySelectorAll('.priority-badge');
 
+    badges.forEach(badge => {
+        const priority = badge.getAttribute('data-priority');
+        switch (priority) {
+            case 'High':
+                badge.classList.add('badge', 'bg-danger');
+                break;
+            case 'Medium':
+                badge.classList.add('badge', 'bg-warning');
+                break;
+            case 'Low':
+                badge.classList.add('badge', 'bg-success');
+                break;
+            default:
+                badge.classList.add('badge', 'bg-secondary');
+        }
+    });
+});
 // Click on a close button to hide the current list item
 var close = document.getElementsByClassName("close");
 var i;

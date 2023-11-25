@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 async function create50users() {
   const result = [];
 
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < 25; i++) {
     // 1. create each object(user)
     // 2. push object into result array
     let firstName = faker.person.firstName();

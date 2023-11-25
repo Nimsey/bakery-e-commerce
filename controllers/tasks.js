@@ -4,6 +4,34 @@ const path = require('path');
 const db = require('../models');
 
 
+// getting profile information
+
+router.get('/profile/:userId', async (req, res) => {
+    try {
+        // Extract userId from the URL parameter
+        const userId = req.params.userId;
+
+        // Fetch tasks assigned to the user specified by userId
+        const tasks = await db.Task.findAll({
+            include: [{
+                model: db.user,
+                as: 'users',
+                where: { id: userId },
+                attributes: [],
+                through: { attributes: [] }
+            }]
+        });
+
+        res.render('profile', { tasks, userId }); // Render the EJS template with tasks
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).send('Server error');
+    }
+});
+
+
+
+
 // POST route to create a new task
 router.post('/tasks', async (req, res) => {
     try {
