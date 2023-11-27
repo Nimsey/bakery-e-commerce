@@ -19,11 +19,10 @@ body {
     max-width: 1200px;
 }
 
-
 nav ul li {
     text-decoration: none;
     display: inline-block;
-    margin-right: .3em;
+    margin-right: 0.3em;
 }
 
 .gradient-custom {
@@ -31,20 +30,27 @@ nav ul li {
     background: #6a11cb;
 
     /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+    background: -webkit-linear-gradient(to right,
+            rgba(106, 17, 203, 1),
+            rgba(37, 117, 252, 1));
 
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+    background: linear-gradient(to right,
+            rgba(106, 17, 203, 1),
+            rgba(37, 117, 252, 1));
 }
 
-
+.headerForm {
+    display: flex;
+    gap: 10px;
+}
 
 .main-body {
     padding: 15px;
 }
 
 .card {
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
 .card {
@@ -55,8 +61,8 @@ nav ul li {
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
-    border: 0 solid rgba(0, 0, 0, .125);
-    border-radius: .25rem;
+    border: 0 solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
 }
 
 .card-body {
@@ -71,7 +77,7 @@ nav ul li {
 }
 
 .gutters-sm>.col,
-.gutters-sm>[class*=col-] {
+.gutters-sm>[class*="col-"] {
     padding-right: 8px;
     padding-left: 8px;
 }
@@ -93,13 +99,52 @@ nav ul li {
     box-shadow: none !important;
 }
 
+/*
+NAVIGATION
+*/
 
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+}
+
+.nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.nav-left a, .nav-right button {
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.text-logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+a.homeBTN {
+    margin-left: 2rem;
+}
 
 /* 
 TO DO LIST
 */
-
-
 
 /* Style the list items */
 ul li {
@@ -136,7 +181,7 @@ ul li.checked {
 
 /* Add a "checked" mark when clicked on */
 ul li.checked::before {
-    content: '';
+    content: "";
     position: absolute;
     border-color: #fff;
     border-style: solid;
@@ -204,7 +249,6 @@ input {
     width: 75%;
     padding: 10px;
     float: left;
-    font-size: 16px;
     border: solid 1px lightgray;
 }
 
@@ -263,7 +307,6 @@ button {
     /* Could be more or less, depending on screen size */
 }
 
-
 .task-line {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -282,10 +325,19 @@ button {
     max-width: 100px;
 }
 
+.taskHeaders {
+    font-weight: bold;
+}
+
+
+
 @media screen and (max-width: 768px) {
     .task-line {
         grid-template-columns: 1fr;
         /* Stacks the items in one column on smaller screens */
         max-width: 80%;
+    }
+    h2 {
+        font-size: 18px;
     }
 }

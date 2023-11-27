@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
         list.addEventListener('click', function (ev) {
             if (ev.target.tagName === 'LI') {
                 ev.target.classList.toggle('checked');
-            } else if (ev.target.closest('li')) { 
+            } else if (ev.target.closest('li')) {
                 // This will ensure that clicking on child elements of the li also triggers the event
                 ev.target.closest('li').classList.toggle('checked');
             }
@@ -91,5 +91,15 @@ window.onclick = function (event) {
     var boxModal = document.getElementById('myModal');
     if (event.target == boxModal) {
         modal.style.display = "none";
+    }
+}
+
+/* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
+function myFunction() {
+    var x = document.getElementById("myLinks");
+    if (x.style.display === "block") {
+        x.style.display = "none";
+    } else {
+        x.style.display = "block";
     }
 }

@@ -16,15 +16,12 @@ SECRET_SESSION = process.env.SECRET_SESSION;
 
 app.set('view engine', 'ejs');
 
-app.use(require('morgan')('dev'));
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(__dirname + '/public'));
+app.use(require('morgan')('dev')); // console log messages
+app.use(express.urlencoded({ extended: true })); // parses the body for the req,res,next
+app.use(express.static(__dirname + '/public')); // creates a root directory for static files like .css
 app.use(layouts);
 app.use(methodOverride("_method"));
-
-
 app.use(flash());            // flash middleware
-
 app.use(session({
   secret: SECRET_SESSION,    // What we actually will be giving the user on our site as a session cookie
   resave: false,             // Save the session even if it's modified, make this false
