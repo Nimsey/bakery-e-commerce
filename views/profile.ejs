@@ -150,7 +150,9 @@
 
 
                 <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                  <%= task.title %>
+                  <%= task.title %> <span class="priority-badge" data-priority="<%= task.priority %>">
+                    <%= task.priority %>
+                </span>
                 </li>
             </span>
             <!-- Other task details -->

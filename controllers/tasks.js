@@ -39,7 +39,7 @@ router.post('/tasks', async (req, res) => {
         console.log(req.body);
         // Find user by email
         const user = await db.user.findOne({ where: { email: email } });
-        
+
         if (!user) {
             // Handle case where user is not found
             res.status(404).send("User not found");
@@ -62,11 +62,23 @@ router.post('/tasks', async (req, res) => {
 });
 
 // edit task
+// edit task
 router.put('/edit/:taskId', async (req, res) => {
     try {
         const taskId = req.params.taskId;
-        const { editInput } = req.body; // Assuming 'editInput' is the name of your input field
-        await db.Task.update({ title: editInput }, { where: { id: taskId } });
+        const { editInput, editEmail, editPriority } = req.body;
+
+        // Construct an object to hold updates
+        let updates = {};
+        if (editInput && editInput.trim() !== '') updates.title = editInput;
+        if (editEmail && editEmail.trim() !== '') updates.email = editEmail;
+        if (editPriority && editPriority.trim() !== '') updates.priority = editPriority;
+
+        // Perform the update only if there's something to update
+        if (Object.keys(updates).length > 0) {
+            await db.Task.update(updates, { where: { id: taskId } });
+        }
+
         res.redirect('/');
     } catch (error) {
         console.error('Error updating task:', error);
@@ -74,12 +86,13 @@ router.put('/edit/:taskId', async (req, res) => {
     }
 });
 
+
 // delete task
 router.delete('/erase/:taskId', async (req, res) => {
     try {
         const taskId = req.params.taskId; // Get the task ID from the URL parameteryour form
         await db.Task.destroy({
-            where: {id: taskId}
+            where: { id: taskId }
             // Include other task fields as needed
         });
         res.redirect('/'); // Redirect to the home page or tasks list page

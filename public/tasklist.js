@@ -59,8 +59,9 @@ document.addEventListener('DOMContentLoaded', function () {
 // if field is empty throw an error
 function checkEmpty() {
     var inputValue = document.getElementById("myInput").value;
-    if (inputValue === '') {
-        alert("You must write something!");
+    var emailValue = document.getElementById("emailInput").value;
+    if (inputValue.trim() === '' || emailValue.trim() === '') {
+        alert("You must fill in the fields");
         return false; // Prevent form submission
     }
     return true; // Allow form submission
@@ -77,29 +78,25 @@ function openModal(taskId) {
 
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("modalClose")[0];
+document.addEventListener('DOMContentLoaded', function() {
+    // Your existing code goes here
+    var span = document.getElementsByClassName("modalClose")[0];
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function () {
+    console.log("Close button clicked"); // Debugging line
     var boxModal = document.getElementById('myModal');
     boxModal.style.display = "none";
     boxModal.style.background.color = "none";
 }
+});
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-    var boxModal = document.getElementById('myModal');
-    if (event.target == boxModal) {
-        modal.style.display = "none";
-    }
-}
 
-/* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
-function myFunction() {
-    var x = document.getElementById("myLinks");
-    if (x.style.display === "block") {
-        x.style.display = "none";
-    } else {
-        x.style.display = "block";
-    }
-}
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = function (event) {
+//     var boxModal = document.getElementById('myModal');
+//     if (event.target == boxModal) {
+//         modal.style.display = "none";
+//     }
+// }
+
