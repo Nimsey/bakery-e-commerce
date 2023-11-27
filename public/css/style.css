@@ -10,6 +10,11 @@ ul {
     list-style-type: none;
 }
 
+.logo{
+    width:35px;
+    height:35px;
+}
+
 body {
     margin: 0 auto;
     color: #1a202c;

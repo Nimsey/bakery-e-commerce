@@ -1,7 +1,12 @@
 <div id="myDIV" class="header">
+    <% if (!currentUser) { %>
     <h2>
-       Hey <%= name %> Stephens! Here is the to do list
+        Regsiter/Sign in to get full functionality
     </h2>
+    <% } else { %>
+        <h2>
+            Hey <%= name %> Here is the to do list
+        </h2>
     <form class="headerForm" action="/tasks" method="POST" onsubmit="return checkEmpty()">
         <input type="text" id="myInput" name="title" placeholder="Create task...">
         <select name="priority">
@@ -14,33 +19,34 @@
         <input type="email" name="email" placeholder="Assign to (email)...">
         <button type="submit" class="addBtn">Add</button>
     </form>
-
+<% } %>
 </div>
 
 <ul id="myUL">
-    <!-- <li class="taskHeaders">
-        <div class="task-line">
-            <span>Tasks</span>
-            <span>Assigned To</span>
-            <span>priority</span>
-        </div>
-    </li> -->
     <% if (tasks && tasks.length> 0) { %>
         <% tasks.forEach(task=> { %>
             <li>
                 <div class="task-line">
-                    <div><span class="taskHeaders">Task:</span> <%= task.title %> </div>
-                    <div><span class="taskHeaders"> Assigned To:</span> <%= task.users.map(user=>user.name).join(', ') %> </div>
-                    <span class="priority-badge" data-priority="<%= task.priority %>"><%= task.priority %></span>
+                    <div><span class="taskHeaders">Task:</span>
+                        <%= task.title %>
+                    </div>
+                    <div><span class="taskHeaders"> Assigned To:</span>
+                        <%= task.users.map(user=>user.name).join(', ') %>
+                    </div>
+                    <span class="priority-badge" data-priority="<%= task.priority %>">
+                        <%= task.priority %>
+                    </span>
+                    <% if (currentUser) { %>
                     <form action="/erase/<%= task.id %>?_method=DELETE" method="POST">
                         <button type="submit" class="close"><i class="fa-solid fa-trash-can fa-lg"></i></button>
                     </form>
                 </div>
-                
+
                 <button type="button" class="editBtn" onclick="openModal(<%= task.id %>)">
-                    
+
                     <i class="fa-solid fa-pencil"></i>
                 </button>
+                <% } %>
             </li>
             <% }) %>
                 <% } else { %>
