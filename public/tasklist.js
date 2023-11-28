@@ -1,9 +1,9 @@
 // Create a "close" button and append it to each list item
-// var myNodelist = document.getElementsByTagName("LI");
-// var i;
+// let myNodelist = document.getElementsByTagName("LI");
+// let i;
 // for (i = 0; i < myNodelist.length; i++) {
-//     var span = document.createElement("SPAN");
-//     var txt = document.createTextNode("\u00D7");
+//     let span = document.createElement("SPAN");
+//     let txt = document.createTextNode("\u00D7");
 //     span.className = "close";
 //     span.appendChild(txt);
 //     myNodelist[i].appendChild(span);
@@ -31,18 +31,18 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 // Click on a close button to hide the current list item
-var close = document.getElementsByClassName("close");
-var i;
+let close = document.getElementsByClassName("close");
+let i;
 for (i = 0; i < close.length; i++) {
     close[i].onclick = function () {
-        var div = this.parentElement;
+        let div = this.parentElement;
         div.style.display = "none";
     }
 }
 
 // Add a "checked" symbol when clicking on a list item
 document.addEventListener('DOMContentLoaded', function () {
-    var list = document.querySelector('#myUL');
+    let list = document.querySelector('#myUL');
     if (list) {
         list.addEventListener('click', function (ev) {
             if (ev.target.tagName === 'LI') {
@@ -58,8 +58,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // if field is empty throw an error
 function checkEmpty() {
-    var inputValue = document.getElementById("myInput").value;
-    var emailValue = document.getElementById("emailInput").value;
+    let inputValue = document.getElementById("myInput").value;
+    let emailValue = document.getElementById("emailInput").value;
     if (inputValue.trim() === '' || emailValue.trim() === '') {
         alert("You must fill in the fields");
         return false; // Prevent form submission
@@ -68,10 +68,10 @@ function checkEmpty() {
 }
 
 function openModal(taskId) {
-    var modal = document.getElementById('myModal');
+    let modal = document.getElementById('myModal');
     modal.style.display = "block";
 
-    var form = document.getElementById('editForm');
+    let form = document.getElementById('editForm');
     form.action = "/edit/" + taskId + "?_method=PUT";
 
 }
@@ -80,12 +80,12 @@ function openModal(taskId) {
 // Get the <span> element that closes the modal
 document.addEventListener('DOMContentLoaded', function() {
     // Your existing code goes here
-    var span = document.getElementsByClassName("modalClose")[0];
+    let span = document.getElementsByClassName("modalClose")[0];
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function () {
     console.log("Close button clicked"); // Debugging line
-    var boxModal = document.getElementById('myModal');
+    let boxModal = document.getElementById('myModal');
     boxModal.style.display = "none";
     boxModal.style.background.color = "none";
 }
@@ -94,7 +94,7 @@ span.onclick = function () {
 
 // // When the user clicks anywhere outside of the modal, close it
 // window.onclick = function (event) {
-//     var boxModal = document.getElementById('myModal');
+//     let boxModal = document.getElementById('myModal');
 //     if (event.target == boxModal) {
 //         modal.style.display = "none";
 //     }

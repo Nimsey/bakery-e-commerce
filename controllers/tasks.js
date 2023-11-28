@@ -102,17 +102,5 @@ router.delete('/erase/:taskId', async (req, res) => {
     }
 });
 
-// DELETE
-// async function deleteUser() {
-//     try {
-//         let numOfRowsDeleted = await db.user.destroy({
-//             where: { email: 'brainsmith@gmail.com' }
-//         });
-//         console.log('number of rows deleted >>>', numOfRowsDeleted);
-//     } catch (error) {
-//         console.log('did not delete user(s) because of >>>', error);
-//     }
-// }
-// @todo run deleteUser function below
 
 module.exports = router;
