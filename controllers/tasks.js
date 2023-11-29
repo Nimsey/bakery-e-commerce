@@ -54,7 +54,7 @@ router.post('/tasks', async (req, res) => {
         // Associate task with user
         await user.addTask(newTask);
 
-        res.redirect('/'); // Redirect to the home page or tasks list page
+        return res.redirect('/'); // Redirect to the home page or tasks list page
     } catch (error) {
         console.error('Error creating task:', error);
         res.status(500).send('Server error');
