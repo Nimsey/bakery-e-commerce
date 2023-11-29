@@ -3,11 +3,11 @@ const request = require('supertest');
 const app = require('../server');
 const db = require('../models');
 
-before(function(done) {
-  db.sequelize.sync({ force: true }).then(function() {
-    done();
-  });
-});
+// before(function(done) {
+//   db.sequelize.sync({ force: true }).then(function() {
+//     done();
+//   });
+// });
 
 describe('Auth Controller', function() {
   describe('GET /auth/signup', function() {
@@ -21,9 +21,9 @@ describe('Auth Controller', function() {
       request(app).post('/auth/signup')
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .send({
-        email: 'test@butts.co',
-        name: 'Mike Schull',
-        password: '123123123'
+        email: 'susan2@email.com',
+        name: 'susan2',
+        password: 'letmein33!!'
       })
       .expect('Location', '/')
       .expect(302, done);

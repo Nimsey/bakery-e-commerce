@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const db = require('../models');
+const isLoggedIn = require("../middleware/isLoggedIn")
 
 
 // getting profile information
 
-router.get('/profile/:userId', async (req, res) => {
+router.get('/profile/:userId', isLoggedIn, async (req, res) => {
     try {
         // Extract userId from the URL parameter
         const userId = req.params.userId;
@@ -63,7 +64,7 @@ router.post('/tasks', async (req, res) => {
 
 // edit task
 // edit task
-router.put('/edit/:taskId', async (req, res) => {
+router.put('/edit/:taskId', isLoggedIn, async (req, res) => {
     try {
         const taskId = req.params.taskId;
         const { editInput, editEmail, editPriority } = req.body;

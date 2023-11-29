@@ -43,7 +43,7 @@
                         </form>
                 </div>
 
-                <button type="button" class="editBtn" onclick="openModal(<%= task.id %>)">
+                <button type="button" class="editBtn" data-task-id="<%= task.id %>" onclick="openModal('<%= task.id %>')">
 
                     <i class="fa-solid fa-pencil"></i>
                 </button>

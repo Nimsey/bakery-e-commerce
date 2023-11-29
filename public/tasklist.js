@@ -40,20 +40,59 @@ for (i = 0; i < close.length; i++) {
     }
 }
 
-// Add a "checked" symbol when clicking on a list item
+
 document.addEventListener('DOMContentLoaded', function () {
+    // Attach event listeners to edit buttons
+    let editButtons = document.querySelectorAll('.editBtn');
+    editButtons.forEach(function (btn) {
+        btn.addEventListener('click', function (event) {
+            event.stopPropagation(); // Prevent event bubbling to parent li
+
+            // Extract taskId from the button and open the modal
+            let taskId = this.getAttribute('data-task-id'); // Ensure you set this attribute in your HTML
+            openModal(taskId);
+        });
+    });
+
+    // Existing code for list item click handling
     let list = document.querySelector('#myUL');
     if (list) {
         list.addEventListener('click', function (ev) {
-            if (ev.target.tagName === 'LI') {
-                ev.target.classList.toggle('checked');
-            } else if (ev.target.closest('li')) {
-                // This will ensure that clicking on child elements of the li also triggers the event
+            // Check if the clicked element is a list item or within a list item
+            if (ev.target.tagName === 'LI' || ev.target.closest('li')) {
                 ev.target.closest('li').classList.toggle('checked');
             }
         }, false);
     }
 });
+
+function openModal(taskId) {
+    let modal = document.getElementById('myModal');
+    if (modal) {
+        modal.style.display = "block";
+    }
+
+    let form = document.getElementById('editForm');
+    if (form) {
+        form.action = "/edit/" + taskId + "?_method=PUT";
+    }
+}
+
+
+// Add a "checked" symbol when clicking on a list item
+// document.addEventListener('DOMContentLoaded', function () {
+//     let list = document.querySelector('#myUL');
+//     if (list) {
+//         list.addEventListener('click', function (ev) {
+//             if (ev.target.tagName === 'LI') {
+//                 ev.target.classList.toggle('checked');
+//             } else if (ev.target.closest('li')) {
+//                 // This will ensure that clicking on child elements of the li also triggers the event
+//                 ev.target.closest('li').classList.toggle('checked');
+//             }
+//         }, false);
+//     }
+// });
 
 
 // if field is empty throw an error
@@ -67,14 +106,14 @@ function checkEmpty() {
     return true; // Allow form submission
 }
 
-function openModal(taskId) {
-    let modal = document.getElementById('myModal');
-    modal.style.display = "block";
+// function openModal(taskId) {
+//     let modal = document.getElementById('myModal');
+//     modal.style.display = "block";
 
-    let form = document.getElementById('editForm');
-    form.action = "/edit/" + taskId + "?_method=PUT";
+//     let form = document.getElementById('editForm');
+//     form.action = "/edit/" + taskId + "?_method=PUT";
 
-}
+// }
 
 
 // Get the <span> element that closes the modal
