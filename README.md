@@ -1,4 +1,27 @@
-# `Express Authentication`
+# Project Details
+
+To Do check list App
+- User Story: As a user of the to-do app, I want to be able to save my to-do list items in a database so that I can access and manage my tasks from any device and never lose my tasks.
+
+----------------------------------------------------------
+### ERD
+
+<img src="resources/ERD.png" width="500px">
+
+----------------------------------------------------------
+
+### Wireframes
+
+<img src="resources/FP_LI_MB.png" width="300px">
+
+<img src="resources/FP_LI_FS.png" width="300px">
+<img src="resources/FP_LO_FS.png" width="300px">
+
+<img src="resources/PRO_LI_FP.png" width="300px">
+
+----------------------------------------------------------
+
+## `Express Authentication`
 
 Express authentication template using Passport + Flash messages + custom middleware
 
@@ -23,6 +46,16 @@ Express authentication template using Passport + Flash messages + custom middlew
 | createdAt | Date | Auto-generated |
 | updatedAt | Date | Auto-generated |
 
+### Task Model
+
+| Column Name | Data Type | Notes |
+| --------------- | ------------- | ------------------------------ |
+| id | Integer | Serial Primary Key, Auto-generated |
+| title | String | Must be provided |
+| description | TEXT | wip |
+| priority | String | drop down option |
+| deadline | Date | wip |
+
 ### Default Routes
 
 | Method | Path | Location | Purpose |
@@ -34,6 +67,10 @@ Express authentication template using Passport + Flash messages + custom middlew
 | POST | /auth/signup | auth.js | Creates User |
 | GET | /auth/logout | auth.js | Removes session info |
 | GET | /profile | server.js | Regular User Profile |
+| GET | /profile/:userId | tasks.js | accessing users profile with userId attached
+| POST | /tasks | tasks.js | posts new tasks
+| PUT | /edit/:taskId | tasks.js | edit task, priority and assignee
+| DELETE | /erase/:taskId | tasks.js | deletes task
 
 ## `1` Fork & Clone Project & Install Dependencies
 `1` The first thing that we are going to do is `fork` and `clone`
@@ -98,14 +135,19 @@ sequelize db:create
 │   └── config.json
 ├── controllers
 │   └── auth.js
+|   └── tasks.js
 ├── models
 │   └── index.js
+│   └── tasks.js
+│   └── user.js
+│   └── usertask.js
 ├── node_modules
 │   └── ...
 ├── public
 │   └── assets
 │   └── css
 │       └── style.css
+│   └── tasklist.js
 ├── test
 │   └── auth.test.js
 │   └── index.test.js
@@ -137,3 +179,4 @@ sequelize db:create
 - `package.json`: The settings file that stores scripts and list of dependencies that are used inside your app.
 - `README.md`: The main markdown file that written to explain the details your app.
 - `server.js`: The main file that controls the entire application.
+
