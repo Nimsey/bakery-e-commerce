@@ -3,6 +3,13 @@
 To Do check list App
 - User Story: As a user of the to-do app, I want to be able to save my to-do list items in a database so that I can access and manage my tasks from any device and never lose my tasks.
 
+What we can do now:
+- sign up
+- view all tasks
+- edit tasks
+- delete tasks
+- personal profile to see personal tasks
+
 ----------------------------------------------------------
 ### ERD
 
@@ -27,7 +34,7 @@ Express authentication template using Passport + Flash messages + custom middlew
 
 ## What it includes
 
-* Sequelize user model / migration
+* Sequelize user, tasks and usertasks model / migration
 * Settings for PostgreSQL
 * Passport and passport-local for authentication
 * Sessions to keep user logged in between pages
@@ -72,8 +79,8 @@ Express authentication template using Passport + Flash messages + custom middlew
 | PUT | /edit/:taskId | tasks.js | edit task, priority and assignee
 | DELETE | /erase/:taskId | tasks.js | deletes task
 
-## `1` Fork & Clone Project & Install Dependencies
-`1` The first thing that we are going to do is `fork` and `clone`
+## `1` Installation Instructions
+`1`  `fork` and `clone` this repo
 
 `2` Now we are going to install the current dependencies that are listed inside of `package.json`
 ```text
@@ -98,12 +105,12 @@ npm install
 ```json
 {
   "development": {
-    "database": "express_auth_dev",
+    "database": "teamtasks",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
-    "database": "express_auth_test",
+    "database": "teamtasks",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
@@ -180,3 +187,8 @@ sequelize db:create
 - `README.md`: The main markdown file that written to explain the details your app.
 - `server.js`: The main file that controls the entire application.
 
+### Roadmap
+- create roles that will have permission values on what they can see and edit
+- teams that can have limited members and viewing access
+- assign multiple people to a single task
+- have the complete status saved to database
